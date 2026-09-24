@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Resume Builder</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        header {
+            background: #1f2937;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        header h1 {
+            margin-bottom: 8px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .form-box {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 14px;
+            border: none;
+            border-radius: 7px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        #resume {
+            display: none;
+            background: white;
+            margin-top: 30px;
+            padding: 40px;
+            border-radius: 10px;
+        }
+
+        #resume h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .contact {
+            text-align: center;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        #resume h3 {
+            margin-top: 20px;
+            margin-bottom: 8px;
+            border-bottom: 2px solid #222;
+            padding-bottom: 5px;
+        }
+
+        .download {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>AI Resume Builder</h1>
+        <p>Create your professional resume easily</p>
+    </header>
+
+
+    <div class="container">
+
+        <div class="form-box">
+
+            <h2>Enter Your Details</h2>
+
+            <label>Full Name</label>
+            <input type="text" id="name" placeholder="Enter your full name">
+
+
+            <label>Email</label>
+            <input type="email" id="email" placeholder="Enter your email">
+
+
+            <label>Phone Number</label>
+            <input type="text" id="phone" placeholder="Enter your phone number">
+
+
+            <label>Career / Job Role</label>
+            <select id="role">
+
+                <option value="">Select your target role</option>
+
+                <option value="Software Developer">
+                    Software Developer
+                </option>
+
+                <option value="Data Analyst">
+                    Data Analyst
+                </option>
+
+                <option value="Web Developer">
+                    Web Developer
+                </option>
+
+                <option value="AI/ML Engineer">
+                    AI/ML Engineer
+                </option>
+
+                <option value="Student / Fresher">
+                    Student / Fresher
+                </option>
+
+            </select>
+
+
+            <label>Education</label>
+
+            <textarea
+                id="education"
+                placeholder="Example: B.E. Computer Science Engineering, XYZ College, 2027">
+            </textarea>
+
+
+            <label>Skills</label>
+
+            <textarea
+                id="skills"
+                placeholder="Example: Python, HTML, CSS, JavaScript, SQL">
+            </textarea>
+
+
+            <label>Projects</label>
+
+            <textarea
+                id="projects"
+                placeholder="Example: AI Resume Builder, Smart Road Detection System">
+            </textarea>
+
+
+            <label>Experience</label>
+
+            <textarea
+                id="experience"
+                placeholder="Enter internship/work experience or write Fresher">
+            </textarea>
+
+
+            <button onclick="generateResume()">
+                Generate AI Resume
+            </button>
+
+        </div>
+
+
+        <div id="resume">
+
+            <h1 id="resumeName">Your Name</h1>
+
+            <p class="contact" id="resumeContact">
+                email@example.com | +91 XXXXX XXXXX
+            </p>
+
+
+            <h3>Professional Summary</h3>
+
+            <p id="resumeSummary"></p>
+
+
+            <h3>Education</h3>
+
+            <p id="resumeEducation"></p>
+
+
+            <h3>Skills</h3>
+
+            <p id="resumeSkills"></p>
+
+
+            <h3>Projects</h3>
+
+            <p id="resumeProjects"></p>
+
+
+            <h3>Experience</h3>
+
+            <p id="resumeExperience"></p>
+
+        </div>
+
+
+        <button
+            class="download"
+            id="downloadButton"
+            onclick="window.print()">
+
+            Download / Print Resume
+
+        </button>
+
+    </div>
+
+
+    <script>
+
+        async function generateResume() {
+
+            const data = {
+
+                name: document.getElementById("name").value,
+
+                email: document.getElementById("email").value,
+
+                phone: document.getElementById("phone").value,
+
+                role: document.getElementById("role").value,
+
+                education: document.getElementById("education").value,
+
+                skills: document.getElementById("skills").value,
+
+                projects: document.getElementById("projects").value,
+
+                experience: document.getElementById("experience").value
+
+            };
+
+
+            const response = await fetch("/generate-resume", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify(data)
+
+            });
+
+
+            const result = await response.json();
+
+
+            document.getElementById("resumeName").innerText =
+                result.name;
+
+
+            document.getElementById("resumeContact").innerText =
+                result.email + " | " + result.phone;
+
+
+            document.getElementById("resumeSummary").innerText =
+                result.summary;
+
+
+            document.getElementById("resumeEducation").innerText =
+                result.education;
+
+
+            document.getElementById("resumeSkills").innerText =
+                result.skills;
+
+
+            document.getElementById("resumeProjects").innerText =
+                result.projects;
+
+
+            document.getElementById("resumeExperience").innerText =
+                result.experience;
+
+
+            document.getElementById("resume").style.display =
+                "block";
+
+
+            document.getElementById("downloadButton").style.display =
+                "block";
+
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -2,12 +2,17 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>AI Resume Builder</title>
 
+
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -15,329 +20,794 @@
             font-family: Arial, sans-serif;
         }
 
+
         body {
-            background: #f4f6f8;
+
+            background: #f3f4f6;
+
             color: #222;
+
         }
+
 
         header {
-            background: #1f2937;
+
+            background: #111827;
+
             color: white;
+
             text-align: center;
-            padding: 30px;
+
+            padding: 35px 20px;
+
         }
+
 
         header h1 {
+
+            font-size: 34px;
+
             margin-bottom: 8px;
+
         }
+
+
+        header p {
+
+            color: #d1d5db;
+
+        }
+
 
         .container {
-            max-width: 1100px;
+
+            max-width: 1200px;
+
             margin: 30px auto;
+
             padding: 20px;
+
         }
+
 
         .form-box {
+
             background: white;
+
             padding: 30px;
+
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.08);
+
         }
+
 
         h2 {
+
             margin-bottom: 20px;
+
         }
 
+
         label {
+
             display: block;
-            margin-top: 15px;
+
+            margin-top: 16px;
+
             margin-bottom: 6px;
+
             font-weight: bold;
+
         }
+
 
         input,
         textarea,
         select {
+
             width: 100%;
+
             padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
+
+            border: 1px solid #d1d5db;
+
+            border-radius: 7px;
+
             font-size: 15px;
+
         }
+
 
         textarea {
-            min-height: 80px;
+
+            min-height: 90px;
+
             resize: vertical;
+
         }
+
 
         button {
+
             width: 100%;
+
             margin-top: 25px;
+
             padding: 14px;
+
             border: none;
+
             border-radius: 7px;
+
             background: #2563eb;
+
             color: white;
+
             font-size: 16px;
+
             cursor: pointer;
+
         }
+
 
         button:hover {
+
             background: #1d4ed8;
+
         }
+
 
         #resume {
+
             display: none;
+
             background: white;
+
             margin-top: 30px;
+
             padding: 40px;
+
             border-radius: 10px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.08);
+
         }
+
 
         #resume h1 {
+
             text-align: center;
+
             margin-bottom: 10px;
+
         }
+
 
         .contact {
+
             text-align: center;
+
             color: #555;
-            margin-bottom: 20px;
+
+            margin-bottom: 25px;
+
         }
+
 
         #resume h3 {
-            margin-top: 20px;
+
+            margin-top: 22px;
+
             margin-bottom: 8px;
+
             border-bottom: 2px solid #222;
+
             padding-bottom: 5px;
+
         }
 
-        .download {
+
+        #analysis {
+
             display: none;
+
+            background: white;
+
+            margin-top: 30px;
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.08);
+
         }
+
+
+        .score {
+
+            font-size: 48px;
+
+            font-weight: bold;
+
+            text-align: center;
+
+            margin: 20px;
+
+        }
+
+
+        .analysis-box {
+
+            margin-top: 20px;
+
+            padding: 15px;
+
+            background: #f9fafb;
+
+            border-radius: 8px;
+
+        }
+
+
+        .analysis-box h3 {
+
+            margin-bottom: 10px;
+
+        }
+
+
+        ul {
+
+            margin-left: 20px;
+
+        }
+
+
+        li {
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .download {
+
+            display: none;
+
+        }
+
+
+        @media print {
+
+            body * {
+
+                visibility: hidden;
+
+            }
+
+
+            #resume,
+            #resume * {
+
+                visibility: visible;
+
+            }
+
+
+            #resume {
+
+                position: absolute;
+
+                left: 0;
+
+                top: 0;
+
+                width: 100%;
+
+                box-shadow: none;
+
+            }
+
+        }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <header>
-        <h1>AI Resume Builder</h1>
-        <p>Create your professional resume easily</p>
-    </header>
+
+<header>
+
+    <h1>AI Resume Builder</h1>
+
+    <p>
+        Build an ATS-friendly professional resume
+    </p>
+
+</header>
 
 
-    <div class="container">
-
-        <div class="form-box">
-
-            <h2>Enter Your Details</h2>
-
-            <label>Full Name</label>
-            <input type="text" id="name" placeholder="Enter your full name">
+<div class="container">
 
 
-            <label>Email</label>
-            <input type="email" id="email" placeholder="Enter your email">
+    <div class="form-box">
+
+        <h2>Enter Your Details</h2>
 
 
-            <label>Phone Number</label>
-            <input type="text" id="phone" placeholder="Enter your phone number">
+        <label>Full Name</label>
+
+        <input
+            type="text"
+            id="name"
+            placeholder="Enter your full name"
+        >
 
 
-            <label>Career / Job Role</label>
-            <select id="role">
+        <label>Email</label>
 
-                <option value="">Select your target role</option>
-
-                <option value="Software Developer">
-                    Software Developer
-                </option>
-
-                <option value="Data Analyst">
-                    Data Analyst
-                </option>
-
-                <option value="Web Developer">
-                    Web Developer
-                </option>
-
-                <option value="AI/ML Engineer">
-                    AI/ML Engineer
-                </option>
-
-                <option value="Student / Fresher">
-                    Student / Fresher
-                </option>
-
-            </select>
+        <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+        >
 
 
-            <label>Education</label>
+        <label>Phone Number</label>
 
-            <textarea
-                id="education"
-                placeholder="Example: B.E. Computer Science Engineering, XYZ College, 2027">
-            </textarea>
-
-
-            <label>Skills</label>
-
-            <textarea
-                id="skills"
-                placeholder="Example: Python, HTML, CSS, JavaScript, SQL">
-            </textarea>
+        <input
+            type="text"
+            id="phone"
+            placeholder="Enter your phone number"
+        >
 
 
-            <label>Projects</label>
+        <label>Target Job Role</label>
 
-            <textarea
-                id="projects"
-                placeholder="Example: AI Resume Builder, Smart Road Detection System">
-            </textarea>
+        <select id="role">
 
+            <option value="">
+                Select your target role
+            </option>
 
-            <label>Experience</label>
+            <option value="Software Developer">
+                Software Developer
+            </option>
 
-            <textarea
-                id="experience"
-                placeholder="Enter internship/work experience or write Fresher">
-            </textarea>
+            <option value="Data Analyst">
+                Data Analyst
+            </option>
 
+            <option value="Web Developer">
+                Web Developer
+            </option>
 
-            <button onclick="generateResume()">
-                Generate AI Resume
-            </button>
+            <option value="AI/ML Engineer">
+                AI/ML Engineer
+            </option>
 
-        </div>
+            <option value="Student / Fresher">
+                Student / Fresher
+            </option>
 
-
-        <div id="resume">
-
-            <h1 id="resumeName">Your Name</h1>
-
-            <p class="contact" id="resumeContact">
-                email@example.com | +91 XXXXX XXXXX
-            </p>
-
-
-            <h3>Professional Summary</h3>
-
-            <p id="resumeSummary"></p>
+        </select>
 
 
-            <h3>Education</h3>
+        <label>Education</label>
 
-            <p id="resumeEducation"></p>
-
-
-            <h3>Skills</h3>
-
-            <p id="resumeSkills"></p>
+        <textarea
+            id="education"
+            placeholder="Example: B.E. Computer Science Engineering, XYZ College, 2027"
+        ></textarea>
 
 
-            <h3>Projects</h3>
+        <label>Skills</label>
 
-            <p id="resumeProjects"></p>
-
-
-            <h3>Experience</h3>
-
-            <p id="resumeExperience"></p>
-
-        </div>
+        <textarea
+            id="skills"
+            placeholder="Example: Python, SQL, HTML, CSS, JavaScript"
+        ></textarea>
 
 
-        <button
-            class="download"
-            id="downloadButton"
-            onclick="window.print()">
+        <label>Projects</label>
 
-            Download / Print Resume
+        <textarea
+            id="projects"
+            placeholder="Example: AI Resume Builder - developed using Python and FastAPI"
+        ></textarea>
+
+
+        <label>Experience</label>
+
+        <textarea
+            id="experience"
+            placeholder="Internship, training, volunteering or Fresher"
+        ></textarea>
+
+
+        <button onclick="generateResume()">
+
+            Generate AI Resume
 
         </button>
 
     </div>
 
 
-    <script>
 
-        async function generateResume() {
+    <!-- RESUME -->
 
-            const data = {
+    <div id="resume">
 
-                name: document.getElementById("name").value,
-
-                email: document.getElementById("email").value,
-
-                phone: document.getElementById("phone").value,
-
-                role: document.getElementById("role").value,
-
-                education: document.getElementById("education").value,
-
-                skills: document.getElementById("skills").value,
-
-                projects: document.getElementById("projects").value,
-
-                experience: document.getElementById("experience").value
-
-            };
+        <h1 id="resumeName">
+            Your Name
+        </h1>
 
 
-            const response = await fetch("/generate-resume", {
+        <p
+            class="contact"
+            id="resumeContact"
+        >
+            email@example.com | +91 XXXXX XXXXX
+        </p>
+
+
+        <h3>
+            Professional Summary
+        </h3>
+
+        <p id="resumeSummary"></p>
+
+
+        <h3>
+            Education
+        </h3>
+
+        <p id="resumeEducation"></p>
+
+
+        <h3>
+            Skills
+        </h3>
+
+        <p id="resumeSkills"></p>
+
+
+        <h3>
+            Projects
+        </h3>
+
+        <p id="resumeProjects"></p>
+
+
+        <h3>
+            Experience
+        </h3>
+
+        <p id="resumeExperience"></p>
+
+    </div>
+
+
+    <button
+        class="download"
+        id="downloadButton"
+        onclick="window.print()"
+    >
+
+        Download / Print Resume
+
+    </button>
+
+
+
+    <!-- AI ANALYSIS -->
+
+    <div id="analysis">
+
+        <h2>
+            AI Resume Analysis
+        </h2>
+
+
+        <div
+            class="score"
+            id="atsScore"
+        >
+            0%
+        </div>
+
+
+        <p
+            id="scoreMessage"
+            style="text-align:center;"
+        ></p>
+
+
+
+        <div class="analysis-box">
+
+            <h3>
+                Matched Keywords
+            </h3>
+
+            <ul id="matchedKeywords"></ul>
+
+        </div>
+
+
+
+        <div class="analysis-box">
+
+            <h3>
+                Suggested Keywords
+            </h3>
+
+            <ul id="missingKeywords"></ul>
+
+        </div>
+
+
+
+        <div class="analysis-box">
+
+            <h3>
+                Improvement Suggestions
+            </h3>
+
+            <ul id="suggestions"></ul>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+
+async function generateResume() {
+
+
+    const data = {
+
+        name:
+            document.getElementById("name").value,
+
+        email:
+            document.getElementById("email").value,
+
+        phone:
+            document.getElementById("phone").value,
+
+        role:
+            document.getElementById("role").value,
+
+        education:
+            document.getElementById("education").value,
+
+        skills:
+            document.getElementById("skills").value,
+
+        projects:
+            document.getElementById("projects").value,
+
+        experience:
+            document.getElementById("experience").value
+
+    };
+
+
+    if (!data.name || !data.email) {
+
+        alert(
+            "Please enter your name and email."
+        );
+
+        return;
+
+    }
+
+
+    const response =
+        await fetch(
+            "/generate-resume",
+            {
 
                 method: "POST",
 
                 headers: {
-                    "Content-Type": "application/json"
+
+                    "Content-Type":
+                        "application/json"
+
                 },
 
-                body: JSON.stringify(data)
+                body:
+                    JSON.stringify(data)
 
-            });
-
-
-            const result = await response.json();
-
-
-            document.getElementById("resumeName").innerText =
-                result.name;
+            }
+        );
 
 
-            document.getElementById("resumeContact").innerText =
-                result.email + " | " + result.phone;
+    const result =
+        await response.json();
 
 
-            document.getElementById("resumeSummary").innerText =
-                result.summary;
+
+    // Resume
+
+    document.getElementById(
+        "resumeName"
+    ).innerText =
+        result.name;
 
 
-            document.getElementById("resumeEducation").innerText =
-                result.education;
+    document.getElementById(
+        "resumeContact"
+    ).innerText =
+        result.email +
+        " | " +
+        result.phone;
 
 
-            document.getElementById("resumeSkills").innerText =
-                result.skills;
+    document.getElementById(
+        "resumeSummary"
+    ).innerText =
+        result.summary;
 
 
-            document.getElementById("resumeProjects").innerText =
-                result.projects;
+    document.getElementById(
+        "resumeEducation"
+    ).innerText =
+        result.education;
 
 
-            document.getElementById("resumeExperience").innerText =
-                result.experience;
+    document.getElementById(
+        "resumeSkills"
+    ).innerText =
+        result.skills;
 
 
-            document.getElementById("resume").style.display =
-                "block";
+    document.getElementById(
+        "resumeProjects"
+    ).innerText =
+        result.projects;
 
 
-            document.getElementById("downloadButton").style.display =
-                "block";
+    document.getElementById(
+        "resumeExperience"
+    ).innerText =
+        result.experience;
+
+
+
+    document.getElementById(
+        "resume"
+    ).style.display =
+        "block";
+
+
+    document.getElementById(
+        "downloadButton"
+    ).style.display =
+        "block";
+
+
+
+    // ATS SCORE
+
+    document.getElementById(
+        "atsScore"
+    ).innerText =
+        result.ats_score + "%";
+
+
+    document.getElementById(
+        "scoreMessage"
+    ).innerText =
+        result.score_message;
+
+
+
+    // Matched keywords
+
+    const matched =
+        document.getElementById(
+            "matchedKeywords"
+        );
+
+    matched.innerHTML = "";
+
+
+    result.matched_keywords.forEach(
+        function(keyword) {
+
+            const li =
+                document.createElement("li");
+
+            li.innerText =
+                keyword;
+
+            matched.appendChild(li);
 
         }
+    );
 
-    </script>
+
+
+    // Missing keywords
+
+    const missing =
+        document.getElementById(
+            "missingKeywords"
+        );
+
+    missing.innerHTML = "";
+
+
+    result.missing_keywords.forEach(
+        function(keyword) {
+
+            const li =
+                document.createElement("li");
+
+            li.innerText =
+                keyword;
+
+            missing.appendChild(li);
+
+        }
+    );
+
+
+
+    // Suggestions
+
+    const suggestions =
+        document.getElementById(
+            "suggestions"
+        );
+
+    suggestions.innerHTML = "";
+
+
+    result.suggestions.forEach(
+        function(suggestion) {
+
+            const li =
+                document.createElement("li");
+
+            li.innerText =
+                suggestion;
+
+            suggestions.appendChild(li);
+
+        }
+    );
+
+
+
+    document.getElementById(
+        "analysis"
+    ).style.display =
+        "block";
+
+}
+
+
+</script>
+
 
 </body>
 
